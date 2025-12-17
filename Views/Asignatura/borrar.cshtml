@@ -1,0 +1,67 @@
+﻿@model GestorAsignaturas.Models.Asignatura
+
+@{
+    ViewBag.Title = "Eliminar Asignatura";
+}
+
+<h2>Eliminar Asignatura</h2>
+<h3>¿Está seguro que desea eliminar esta asignatura?</h3>
+
+<div<!-- Plan (pseudocódigo detallado):
+1. Usar el modelo fuertemente tipado: 'GestorAsignaturas.Models.Asignatura'.
+2. Mostrar título y confirmación.
+3. Abrir un contenedor <div> y una lista de definición <dl> para los campos de la asignatura.
+4. Para evitar errores con expresiones lambda y referencias faltantes a 'System.Core',
+   usar las sobrecargas que aceptan el nombre de la propiedad como cadena:
+   - @Html.DisplayName("Propiedad")
+   - @Html.Display("Propiedad")
+5. No usar 'For' helpers que requieran expresiones (p. ej. DisplayFor/HiddenFor) para evitar CS0012.
+6. Abrir el formulario con @using (Html.BeginForm()) { ... } asegurando que el bloque Razor esté correctamente delimitado.
+7. Incluir @Html.AntiForgeryToken()
+8. Añadir un campo oculto usando @Html.Hidden("ID", Model.ID) para enviar el id al POST.
+9. Corregir el botón de submit mal formado y cerrar todas las etiquetas HTML (<div>, form block).
+10. Añadir enlace "Cancelar" a la acción Index.
+-->
+
+<div>  <h4>Asignatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+            <dt>@Html.DisplayName("Nombre")</dt>
+        <dd>@Html.Display("Nombre")</dd>
+
+        <dt>@Html.DisplayName("Codigo")</dt>
+        <dd>@Html.Display("Codigo")</dd>
+
+        <dt>@Html.DisplayName("Creditos")</dt>
+        <dd>@Html.Display("Creditos")</dd>
+
+        <!-- Componentes de aprendizaje -->
+        <dt>@Html.DisplayName("CD")</dt>
+        <dd>@Html.Display("CD")</dd>
+
+        <dt>@Html.DisplayName("CP")</dt>
+        <dd>@Html.Display("CP")</dd>
+
+        <dt>@Html.DisplayName("AA")</dt>
+        <dd>@Html.Display("AA")</dd>
+
+        <!-- Horas calculadas (solo lectura) -->
+        <dt>@Html.DisplayName("Horas")</dt>
+        <dd>@Html.Display("Horas")</dd>
+
+        <!-- Área opcional -->
+        <dt>@Html.DisplayName("Area")</dt>
+        <dd>@Html.Display("Area")</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("ID", Model.ID)   <!-- NECESARIO para ConfirmarBorrar(int id) -->
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" />
+            @Html.ActionLink("Cancelar", "Index")
+        </div>
+    }
+</div>

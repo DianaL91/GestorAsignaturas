@@ -1,0 +1,42 @@
+﻿
+@model GestorAsignaturas.Models.Asignatura
+@{
+    ViewBag.Title = "Detalles de Asignatura";
+}
+<h2>Detalles de la Asignatura</h2>
+<div>
+    <h4>Asignatura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.Display(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayName(model => model.Codigo)
+        </dt>
+        <dd>
+            @Html.Display(model => model.Codigo)
+        </dd>
+        <dt>
+            @Html.DisplayName(model => model.Creditos)
+        </dt>
+        <dd>
+            @Html.Display(model => model.Creditos)
+        </dd>
+        <dt>
+            @Html.DisplayName(model => model.Horas)
+        </dt>
+        <dd>
+            @Html.Display(model => model.Horas)
+            <div>
+                @Html.ActionLink("Editar", "Editar", new { id = Model.ID }) |
+                @Html.ActionLink("Volver a la lista", "Index")
+            </div>
+
+        </dd>
+    </dl>
+</div>
+

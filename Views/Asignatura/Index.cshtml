@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<GestorAsignaturas.Models.Asignatura>
+
+    @{
+        ViewBag.Title = "Listado de Asignaturas";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Listado de Asignaturas</h2>
+
+    <p>
+        @Html.ActionLink("Crear Nueva Asignatura", "Crear")
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.First().Nombre)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Codigo)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Creditos)</th>
+                <th>@Html.DisplayNameFor(m => m.First().CD)</th>
+                <th>@Html.DisplayNameFor(m => m.First().CP)</th>
+                <th>@Html.DisplayNameFor(m => m.First().AA)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Horas)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Area)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(_ => item.Nombre)</td>
+                        <td>@Html.DisplayFor(_ => item.Codigo)</td>
+                        <td>@Html.DisplayFor(_ => item.Creditos)</td>
+                        <td>@Html.DisplayFor(_ => item.CD)</td>
+                        <td>@Html.DisplayFor(_ => item.CP)</td>
+                        <td>@Html.DisplayFor(_ => item.AA)</td>
+                        <td>@Html.DisplayFor(_ => item.Horas)</td>
+                        <td>@Html.DisplayFor(_ => item.Area)</td>
+                        <td>
+                            @Html.ActionLink("Editar", "Editar", new { id = item.ID }) |
+                            @Html.ActionLink("Ver", "Detalles", new { id = item.ID }) |
+                            @Html.ActionLink("Borrar", "Borrar", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td
+                    <td colspan="9" class="text-center text-muted">No hay asignaturas registradas.</td>
+                </tr>
+            }
+        </tbody>
